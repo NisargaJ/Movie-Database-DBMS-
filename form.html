@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<link href="form.css" rel="stylesheet" type="text/css">
+<head>
+                <title>Update Database</title>
+</head>
+<body>
+                <h1 align="center">Enter Movie Details</h1>
+<form style="text-align: center;" method="POST" action="movie_input.php">
+                <br><input class="in" type="text" name="name" placeholder="Movie Name" required><br>
+                <br><input class="in"type="text" name="language" placeholder="Language" required><br>
+                <br><input class="in"type="number" name="release" placeholder="Year of Release" min="1920" max="2019" step="1" required><br>
+                <br><input class="in"type="text" name="director" placeholder="Director" required><br>
+                <br><input class="in"type="text" name="producton" placeholder="Production Company" required><br>
+                <br><input class="in"type="text" name="crew" placeholder="Production Crew" required><br>
+                <br><input class="in"type="text" name="location" placeholder="Country" required><br>
+                <br><input class="in"type="number" name="runtime" placeholder="Runtime(in mins)" required><br>
+                <br><input class="in"type="number" name="budget" placeholder="Budget" required><br>
+                <br><input class="in"type="number" name="rating" placeholder="Rating" required><br>
+                <br><input class="in"type="number" name="m_rating" placeholder="MPAA Rating" required><br>
+                <br><input class="but"type="submit" name="submit" value="submit"><br>
+                <br><br><br><br>
+</form>
+</body>
+</html>
+<?php
+                if($_POST)
+    {
+    $servername="localhost";
+    $username="root";
+    $password="";
+    $dbname="movie";
+    $conn=mysqli_connect($servername,$username,$password,$dbname);
+    if(mysql_num_rows((my_sqli_query($conn,"SELECT * FROM MOVIE WHERE NAME=$POST["name"];") == 0)
+    {
+    $result = mysql_query($conn,"SELECT * FROM MOVIE");
+                $num_rows = mysql_num_rows($result)+1;
+    $sql="INSERT INTO MOVIE VALUES($num_rows,$POST["name"],$POST["rating"],$POST["release"],$POST["language"],$POST["director"],$POST["location"],$POST["runtime"],$POST["m_rating"],$POST["budget"]);";
+                mysql_query($conn,$sql);
+
+                }
+}
+?>
